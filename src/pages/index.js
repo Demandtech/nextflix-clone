@@ -52,38 +52,41 @@ export default function Home() {
               membership.
             </h3>
             <div className={styles['form-control']}>
-            
+              <div
+                className={`${styles['input-control']} ${
+                  isFocus.outline ? `${styles['input-control-focus']}` : ''
+                } ${inputError.show ? `${styles['input-error']}` : ''} ${
+                  inputError.match ? `${styles['input-match']}` : ''
+                }`}
+              >
                 <div
-                  className={`${styles['input-control']} ${
-                    isFocus.outline ? `${styles['input-control-focus']}` : ''
-                  } ${inputError.show ? `${styles['input-error']}` : ''} ${
-                    inputError.match ? `${styles['input-match']}` : ''
+                  className={`${styles['input-label']} ${
+                    isFocus.label ? `${styles['input-focus']}` : ``
                   }`}
-                  >
-                  <div
-                    className={`${styles['input-label']} ${
-                      isFocus.label ? `${styles['input-focus']}` : ``
-                    }`}
-                  >
-                    <label htmlFor='email'>Email Address</label>
-                  </div>
-                  <input
-                    value={value}
-                    id='email'
-                    type='text'
-                    name='email'
-                    onChange={handleChange}
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
-                    autoComplete={'off'}
-                  />
+                >
+                  <label htmlFor='email'>Email Address</label>
                 </div>
-                
-            
+                <input
+                  value={value}
+                  id='email'
+                  type='text'
+                  name='email'
+                  onChange={handleChange}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  autoComplete={'off'}
+                />
+              </div>
+
               <div className={styles['btn-wrapper']}>
                 <button className='btn'>Get Started &gt;</button>
               </div>
             </div>
+            {inputError.show && (
+              <div className={styles['error-el']}>
+               <span className=''>&times;</span> <span>{inputError.msg}</span>{' '}
+              </div>
+            )}
           </form>
         </div>
       </div>
